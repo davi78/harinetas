@@ -170,6 +170,7 @@ var songs = [
   "music/music1.mp3",
   "music/music2.mp3",
   "music/music3.mp3",
+  "music/music4.mp3",
   // Tambahkan lagu-lagu lainnya di sini
 ];
 
