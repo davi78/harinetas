@@ -18,6 +18,12 @@ body {
 .container {
   text-align: center;
   padding: 20px;
+  background-color: #49b4ed; /* Warna latar belakang */
+  border-radius: 8px; /* Membuat sudut elemen menjadi melengkung */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+  animation: container-animation 0.5s ease-in-out forwards;
+  max-width: 600px; /* Lebar maksimum */
+  width: 80%; /* Lebar relatif */
 }
 
 h1 {
@@ -27,7 +33,7 @@ h1 {
 }
 
 .card {
-  background-color: #ffffff;
+  background-color: #9dd6f4;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -42,7 +48,7 @@ h1 {
 
 .countdown-item {
   margin: 0 10px;
-  background-color: #ffffff;
+  background-color: #9dd6f4;
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -58,10 +64,10 @@ h1 {
 }
 
 .age-item {
-  margin: 0 10px;
-  background-color: #ffffff;
+  margin: 0 3px;
+  background-color: #9dd6f4;
   border-radius: 8px;
-  padding: 10px;
+  padding: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
@@ -88,6 +94,21 @@ h1 {
   height: auto;
 }
 
+.img {
+  max-width: 100%;
+  margin-top: -35px;
+  height: auto;
+  max-height: 200px; /* Sesuaikan dengan tinggi gambar yang diinginkan */
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  animation: shake 1.5s infinite;
+}
+
+.img:hover {
+  transform: scale(1.05);
+}
+
 .birthday-card {
   font-size: 16px;
   color: #555555;
@@ -95,7 +116,7 @@ h1 {
 }
 
 .birthday-message {
-  background-color: #ffffff; /* Warna latar belakang */
+  background-color: #9dd6f4; /* Warna latar belakang */
   border-radius: 8px; /* Membuat sudut elemen menjadi melengkung */
   padding: 20px; /* Ruang di dalam elemen */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Efek bayangan */
@@ -103,6 +124,49 @@ h1 {
   color: #333333; /* Warna teks */
   margin-top: 20px; /* Jarak atas */
   animation: message-animation 0.5s ease-in-out forwards; /* Animasi */
+}
+
+.play-button {
+  margin-top: 15px;
+  background-color: #43d1db; /* Warna latar belakang */
+  color: white; /* Warna teks */
+  padding: 10px 20px; /* Padding (jarak) di dalam tombol */
+  font-size: 16px; /* Ukuran teks */
+  border: 1px solid #43a8db; /* Warna elemen tombol */
+  cursor: pointer; /* Kursor menjadi tanda panah saat diarahkan ke tombol */
+  border-radius: 8px; /* Sudut melengkung pada tombol */
+}
+
+/* Efek hover saat kursor diarahkan ke tombol */
+.play-button:hover {
+  background-color: #43a8db;
+}
+#typing-animation {
+  overflow: hidden; /* Mengatur overflow ke hidden untuk memastikan teks yang melebihi lebar tidak terlihat */
+  border-right: 0.15em solid orange; /* Garis bawah animasi */
+  white-space: nowrap; /* Menghindari pemisahan kata pada teks animasi */
+  margin: 0 auto; /* Mengatur margin untuk pusatkan teks */
+  letter-spacing: 0.15em; /* Mengatur jarak antar huruf */
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite; /* Mengatur animasi dan kecepatannya */
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  } /* Memulai animasi dengan lebar 0 */
+  to {
+    width: 100%;
+  } /* Mengakhiri animasi dengan lebar 100% */
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  } /* Mengubah warna garis bawah */
+  50% {
+    border-color: orange;
+  } /* Mengembalikan warna garis bawah setengah waktu animasi */
 }
 
 /* Animasi Countdown */
@@ -120,6 +184,34 @@ h1 {
 @keyframes countdown-scale {
   0% {
     transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes img-animation {
+  0% {
+    transform: scale(0);
   }
   50% {
     transform: scale(1.2);
@@ -174,5 +266,49 @@ h1 {
   .countdown-label,
   .age-label {
     font-size: 12px;
+  }
+  .img {
+    max-height: 100px; /* Sesuaikan dengan tinggi gambar pada perangkat dengan lebar maksimum 480px */
+  }
+  .birthday-image {
+    max-height: 75px; /* Sesuaikan dengan tinggi gambar pada perangkat dengan lebar maksimum 480px */
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  .countdown-value {
+    font-size: 42px;
+  }
+
+  .countdown-label,
+  .age-label {
+    font-size: 13px;
+  }
+
+  .container {
+    max-width: 480px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .countdown-value {
+    font-size: 48px;
+  }
+
+  .countdown-label,
+  .age-label {
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 600px;
   }
 }

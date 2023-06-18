@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown Ulang Tahun</title>
+    <title>Ulang Tahun</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -31,16 +32,17 @@
                         <span class="countdown-label">Detik</span>
                     </div>
                 </div>
-                <div class="message">
-
-                </div>
+                <div class="message"></div>
                 <div class="age">
                     <div class="age-item">
-                        <p class="age-label">Usia saat ini<br><span id="current-age"></span></p>
+                        <p class="age-label"><span id="current-age"></span></p>
                     </div>
                 </div>
             </div>
         </div>
+        <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
+        <button class="play-button" id="playButton"><i class="fas fa-play"></i> Musik</button>
+        <audio id="myAudio"></audio>
     </div>
 
     <script src="script.js"></script>

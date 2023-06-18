@@ -8,40 +8,83 @@ function addLeadingZero(number) {
 
 // Fungsi untuk menghitung umur saat ini
 function calculateCurrentAge() {
-  // Tanggal ulang tahun (contoh: 20 Juni 2005)
-  var birthday = new Date("June 20, 2005");
-
-  // Tanggal dan waktu saat ini
+  // Tanggal ulang tahun yang dituju (18 Juni 2023)
+  var targetDate = new Date("June 20, 2005 00:00:00");
   var now = new Date();
 
-  // Hitung selisih waktu antara tanggal lahir dan saat ini
-  var ageInMilliseconds = now - birthday;
+  // Menghitung selisih waktu antara dua tanggal
+  var yearsDiff = now.getFullYear() - targetDate.getFullYear();
+  var monthsDiff = now.getMonth() - targetDate.getMonth();
+  var daysDiff = now.getDate() - targetDate.getDate();
+  var hoursDiff = now.getHours() - targetDate.getHours();
+  var minutesDiff = now.getMinutes() - targetDate.getMinutes();
+  var secondsDiff = now.getSeconds() - targetDate.getSeconds();
 
-  // Konversi selisih waktu ke dalam tahun, jam, menit, dan detik
-  var years = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25));
-  var hours = Math.floor(
-    (ageInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
-  var minutes = Math.floor(
-    (ageInMilliseconds % (1000 * 60 * 60)) / (1000 * 60)
-  );
-  var seconds = Math.floor((ageInMilliseconds % (1000 * 60)) / 1000);
+  // Menyesuaikan selisih bulan dan tahun jika nilai negatif
+  if (monthsDiff < 0 || (monthsDiff === 0 && daysDiff < 0)) {
+    yearsDiff--;
+    monthsDiff += 12;
+  }
 
-  // Tampilkan umur saat ini pada elemen dengan id yang sesuai
+  // Menyesuaikan selisih hari jika nilai negatif
+  if (daysDiff < 0) {
+    var tempDate = new Date(
+      targetDate.getFullYear(),
+      targetDate.getMonth() + 1,
+      0
+    );
+    daysDiff += tempDate.getDate();
+    monthsDiff--;
+  }
+
+  // Menyesuaikan selisih jam, menit, dan detik jika nilai negatif
+  if (hoursDiff < 0) {
+    daysDiff--;
+    hoursDiff += 24;
+  }
+  if (minutesDiff < 0) {
+    hoursDiff--;
+    minutesDiff += 60;
+  }
+  if (secondsDiff < 0) {
+    minutesDiff--;
+    secondsDiff += 60;
+  }
+
   document.getElementById("current-age").textContent =
-    years +
+    yearsDiff +
     " tahun, " +
-    addLeadingZero(hours) +
+    monthsDiff +
+    " bulan, " +
+    daysDiff +
+    " hari, " +
+    addLeadingZero(hoursDiff) +
     " jam, " +
-    addLeadingZero(minutes) +
+    addLeadingZero(minutesDiff) +
     " menit, " +
-    addLeadingZero(seconds) +
+    addLeadingZero(secondsDiff) +
     " detik";
+}
+
+function typeWriter(text, element, delay) {
+  var i = 0;
+  var txt = text;
+  var speed = delay;
+
+  function type() {
+    if (i < txt.length) {
+      element.innerHTML += txt.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+
+  type();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   // Tanggal ulang tahun yang dituju (18 Juni 2023)
-  var targetDate = new Date("June 18, 2023 11:12:00").getTime();
+  var targetDate = new Date("June 20, 2023 00:00:00").getTime();
 
   // Perbarui hitungan mundur setiap detik
   var countdown = setInterval(function () {
@@ -94,13 +137,17 @@ document.addEventListener("DOMContentLoaded", function () {
       ];
       var randomMessage = ucapan[Math.floor(Math.random() * ucapan.length)];
       document.getElementById("countdown").innerHTML =
-        '<span class="countdown-item"></span>';
-
+        '<img class="img" src="image/poto.webp">';
+      setInterval(function () {
+        document.getElementById("countdown").innerHTML =
+          '<img class="img" src="image/poto.webp">';
+      }, 3000);
       // Tambahkan pesan tambahan pada kartu ulang tahun
       var birthdayMessage = document.createElement("p");
       birthdayMessage.classList.add("birthday-message");
-      birthdayMessage.textContent = randomMessage;
+      // birthdayMessage.textContent = randomMessage;
       document.querySelector(".message").appendChild(birthdayMessage);
+      typeWriter(randomMessage, birthdayMessage, 80);
 
       // Hitung dan tampilkan umur saat ini saat halaman dimuat
       setInterval(function () {
@@ -118,6 +165,19 @@ function animateNumber(id) {
   element.classList.add("countdown-scale");
 }
 
+// Daftar lagu
+var songs = [
+  "music/music1.mp3",
+  "music/music2.mp3",
+  "music/music3.mp3",
+  // Tambahkan lagu-lagu lainnya di sini
+];
+
+// Mendapatkan elemen audio
+var audio = document.getElementById("myAudio");
+
+// Mendapatkan elemen tombol play
+var playButton = document.getElementById("playButton");
 // Tambahkan class animate-onload saat halaman dimuat
 window.addEventListener("load", function () {
   var countdownItems = document.querySelectorAll(".countdown-item");
@@ -129,4 +189,44 @@ window.addEventListener("load", function () {
   ageItem.forEach(function (item) {
     item.classList.add("current-age-animate");
   });
+  // Play music
+  var randomIndex = Math.floor(Math.random() * songs.length);
+  var randomSong = songs[randomIndex];
+  audio.src = randomSong;
+});
+
+// Menambahkan event listener pada tombol untuk mengontrol pemutaran musik
+playButton.addEventListener("click", () => {
+  if (audio.paused) {
+    var randomIndex = Math.floor(Math.random() * songs.length);
+    var randomSong = songs[randomIndex];
+    audio.src = randomSong;
+    audio.play();
+    playButton.innerHTML = '<i class="fas fa-pause"></i> Musik';
+  } else {
+    audio.pause();
+    playButton.innerHTML = '<i class="fas fa-play"></i> Musik';
+  }
+});
+
+audio.addEventListener("ended", () => {
+  playButton.innerHTML = '<i class="fas fa-play"></i> Musik';
+  var randomIndex = Math.floor(Math.random() * songs.length);
+  var randomSong = songs[randomIndex];
+  audio.src = randomSong;
+  audio.play();
+  playButton.innerHTML = '<i class="fas fa-pause"></i> Musik';
+});
+
+function setVolume(volume) {
+  audio.volume = volume;
+}
+
+// Mendapatkan elemen slider volume
+var volumeSlider = document.getElementById("volumeSlider");
+
+// Menambahkan event listener pada slider volume
+volumeSlider.addEventListener("input", function () {
+  var volumeValue = volumeSlider.value / 100; // Mengkonversi nilai slider menjadi rentang 0 hingga 1
+  setVolume(volumeValue);
 });
