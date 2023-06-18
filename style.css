@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #9dd6f4; /* Warna Biru */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: card-animation 0.5s ease-in-out forwards;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.countdown-item {
+  margin: 0 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: countdown-animation 0.5s ease-in-out forwards;
+}
+
+.age {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.age-item {
+  margin: 0 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: age-animation 0.5s ease-in-out forwards;
+}
+
+.countdown-value {
+  font-size: 48px;
+  color: #333333;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.countdown-label,
+.age-label {
+  font-size: 14px;
+  color: #555555;
+  text-transform: uppercase;
+}
+
+.birthday-image {
+  max-width: 250px;
+  height: auto;
+}
+
+.birthday-card {
+  font-size: 16px;
+  color: #555555;
+  margin-top: 20px;
+}
+
+.birthday-message {
+  background-color: #ffffff; /* Warna latar belakang */
+  border-radius: 8px; /* Membuat sudut elemen menjadi melengkung */
+  padding: 20px; /* Ruang di dalam elemen */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+  text-align: center; /* Pusatkan teks */
+  color: #333333; /* Warna teks */
+  margin-top: 20px; /* Jarak atas */
+  animation: message-animation 0.5s ease-in-out forwards; /* Animasi */
+}
+
+/* Animasi Countdown */
+@keyframes countdown-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes countdown-scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes age-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes card-animation {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes message-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  .countdown-value {
+    font-size: 36px;
+  }
+
+  .countdown-label,
+  .age-label {
+    font-size: 12px;
+  }
+}
