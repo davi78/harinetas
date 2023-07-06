@@ -84,7 +84,7 @@ function typeWriter(text, element, delay) {
 
 document.addEventListener("DOMContentLoaded", function () {
   // Tanggal ulang tahun yang dituju (18 Juni 2023)
-  var targetDate = new Date("June 20, 2023 00:00:00").getTime();
+  var targetDate = new Date("June 20, 2024 00:00:00").getTime();
 
   // Perbarui hitungan mundur setiap detik
   var countdown = setInterval(function () {
